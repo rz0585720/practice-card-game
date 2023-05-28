@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  /* 卡片在容器內的排版 */
+  flex: 7% 0 1;
+  height: 8vw;
+  border: 2px solid #e0e0e0;
+  margin: 2px;
+
+  /* 卡片內部元素的排版 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.card img {
+  max-width: 30%;
+  align-self: center;
+}
+
+.card p {
+  margin: 3px;
+  font-size: 20px;
+}
+
+.card p:last-child {
+  transform: rotate(180deg);
+}
+
+.back {
+  background-image: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-size: cover;
+}
+
+.pair {
+  background-color: #dae0e3;
+}
