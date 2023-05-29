@@ -4,14 +4,47 @@
   box-sizing: border-box;
 }
 
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 85%;
+}
+
+#header .title {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+#header .title img {
+  max-width: 3em;
+}
+
+#header .title h2 {
+  padding-left: 0.5em;
+}
+
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+
+#header .tried {
+  margin-top: 0;
+}
+
 #cards {
   display: flex;
   flex-wrap: wrap;
+  width: 85%;
+  margin: 0 auto;
 }
 
 .card {
   /* 卡片在容器內的排版 */
-  flex: 7% 0 1;
+  flex: 7% 1 1;
   height: 8vw;
   border: 2px solid #e0e0e0;
   margin: 2px;
@@ -37,10 +70,21 @@
 }
 
 .back {
-  background-image: url('https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png');
+  background-image: url('https://i.pinimg.com/564x/ab/1b/70/ab1b704bbd4bf0cb7083cbad006c8779.jpg');
   background-size: cover;
 }
 
 .pair {
   background-color: #dae0e3;
+}
+
+.wrong {
+  animation: wrongAnimation 0.2s;
+  animation-iteration-count: 5;
+}
+
+@keyframes wrongAnimation {
+  to {
+    border: 2px solid #f1c232;
+  }
 }
