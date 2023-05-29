@@ -67,6 +67,23 @@ const view = {
 			return
 		})
 	},
+
+	renderScore(score) {
+		document.querySelector('.score').textContent = `Score: ${score}`
+	},
+
+	renderTriedTimes(times) {
+		document.querySelector('.tried').textContent = `You've tried: ${times} times`
+	},
+
+	appendWrongAnimation(...cards) {
+		cards.map(card => {
+			card.classList.add('wrong')
+			card.addEventListener('animationend', event => {
+			event.target.classList.remove('wrong')
+		}, { once: true })
+		})		
+	}
 }
 
 // 洗牌
@@ -104,11 +121,13 @@ const controller = {
 				return
 
 			case GAME_STATE.SecondCardAwaits:
+				view.renderTriedTimes(++model.triedTimes)
 				view.flipCards(card)
 				model.revealedCards.push(card)
 
 				if (model.isRevealedCardsMatched()) {
 					// 配對正確
+					view.renderScore((model.score += 10))
 					this.currentState = GAME_STATE.CardsMatched
 					view.pairCards(...model.revealedCards)
 					model.revealedCards = []
@@ -116,6 +135,7 @@ const controller = {
 				} else {
 					// 配對失敗
 					this.currentState = GAME_STATE.CardsMatchFailed
+					view.appendWrongAnimation(...model.revealedCards)
 					setTimeout(this.resetCards, 1000)
 				}
 				return
@@ -138,6 +158,9 @@ const model = {
 			this.revealedCards[1].dataset.index % 13
 		)
 	},
+
+	score: 0,
+	triedTimes: 0,
 }
 
 controller.generateCards()
